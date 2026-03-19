@@ -1,7 +1,8 @@
-# Stage 1: Build
-FROM docker.io/library/golang:1.24-alpine AS builder
+# Stage 1: Build (runs on native platform, cross-compiles to target)
+FROM --platform=$BUILDPLATFORM docker.io/library/golang:1.24-alpine AS builder
 
-RUN apk add --no-cache upx
+ARG TARGETOS
+ARG TARGETARCH
 
 WORKDIR /build
 
@@ -10,12 +11,11 @@ RUN go mod download && go mod verify
 
 COPY . .
 
-RUN CGO_ENABLED=0 go build \
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags="-s -w" \
     -trimpath \
     -o docker-credential-acr \
-    . \
-    && upx --best --lzma docker-credential-acr
+    .
 
 # Stage 2: Runtime
 FROM scratch

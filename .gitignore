@@ -1,4 +1,5 @@
 # Binaries
+bin/
 docker-credential-acr
 *.exe
 *.exe~
@@ -25,5 +26,3 @@ go.work
 # OS
 .DS_Store
 Thumbs.db
-.vscode/
-.vscode/
