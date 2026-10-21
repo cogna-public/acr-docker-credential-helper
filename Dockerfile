@@ -1,5 +1,5 @@
 # Stage 1: Build (runs on native platform, cross-compiles to target)
-FROM --platform=$BUILDPLATFORM docker.io/library/golang:1.24-alpine AS builder
+FROM --platform=$BUILDPLATFORM docker.io/library/golang:1.26.10-alpine AS builder
 
 ARG TARGETOS
 ARG TARGETARCH
