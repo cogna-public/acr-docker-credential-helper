@@ -1,8 +1,7 @@
 module github.com/mriedmann/acr-docker-credential-helper
 
-go 1.24.0
+go 1.26.10
 
-toolchain go1.24.11
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.0
